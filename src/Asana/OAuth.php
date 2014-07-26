@@ -1,16 +1,7 @@
 <?php
 
-/**
- * AsanaAuth class is used for easy Oauth authentication.
- * The use of this class is totally optional and you can use any
- * other oauth implementation if prefered.
- *
- * Copyright 2014 Ajimix
- * Licensed under the Apache License 2.0
- *
- * Authors: Ajimix [github.com/ajimix], Puchol [https://github.com/puchol]
- * Version: 2.0.0
- */
+namespace Asana;
+
 class AsanaAuth {
 
     private $timeout = 10;

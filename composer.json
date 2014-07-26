@@ -1,22 +1,16 @@
 {
-    "name": "ajimix/asana-api-php-class",
-    "description": "A PHP class that acts as wrapper for Asana API. Lets make things easy! :)",
+    "name": "randak/asanaphp",
+    "description": "An API that makes it easy to work with Asana via PHP. Based on the [original](https://github.com/ajimix/asana-api-php-class) by [Ajimix](https://github.com/ajimix).",
     "keywords": ["asana","api"],
-    "homepage": "https://github.com/ajimix/asana-api-php-class",
+    "homepage": "https://github.com/randak/AsanaPHP",
     "license": "Apache License Version 2.0",
     "authors": [
         {
-            "name": "Adria Jimenez",
-            "email": "ajimix@gmail.com",
-            "homepage": "http://www.ajimix.net"
+            "name": "Kristian Randall",
+            "email": "kristian.l.randall@gmail.com",
+            "homepage": "http://www.kristianrandall.com"
         }
     ],
-	"autoload": {
-		"classmap": [
-			"asana.php",
-			"asana-oauth.php"
-		]
-	},
     "require": {
         "php": ">=5.3.0"
     }
