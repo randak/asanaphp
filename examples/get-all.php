@@ -1,48 +1,25 @@
 <?php
-require_once('../asana.php');
 
-// See class comments and Asana API for full info
+use Asana\AsanaApiWrapper;
+use Asana\AsanaWorkspace;
+use Asana\AsanaProject;
+use Asana\AsanaTask;
 
-$asana = new Asana(array('apiKey' => 'xxxxxxxxxxxxxxxxxxxxx')); // Your API Key, you can get it in Asana
+$asana = new AsanaApiWrapper(array('apiKey' => "xxxxxx"));
 
-// Get all workspaces
-$workspaces = $asana->getWorkspaces();
+$workspaces = AsanaWorkspace::getAll();
 
-// As Asana API documentation says, when response is successful, we receive a 200 in response so...
-if ($asana->responseCode != '200' || is_null($workspaces)) {
-    echo 'Error while trying to connect to Asana, response code: ' . $asana->responseCode;
-    return;
-}
+foreach($workspaces as $workspace) {
 
-$workspacesJson = json_decode($workspaces);
+    //print out workspace stuff
 
-foreach ($workspacesJson->data as $workspace) {
-    echo '<h3>*** ' . $workspace->name . ' (id ' . $workspace->id . ')' . ' ***</h3><br />' . PHP_EOL;
+    $projects = AsanaProject::getAllByWorkspace($workspace);
 
-    // Get all projects in the current workspace (all non-archived projects)
-    $projects = $asana->getProjectsInWorkspace($workspace->id, $archived = false);
+    //print out project stuff
 
-    // As Asana API documentation says, when response is successful, we receive a 200 in response so...
-    if ($asana->responseCode != '200' || is_null($projects)) {
-        echo 'Error while trying to connect to Asana, response code: ' . $asana->responseCode;
-        continue;
-    }
+    foreach($projects as $project) {
+        $tasks = AsanaTask::getAllByProject($project);
 
-    $projectsJson = json_decode($projects);
-
-    foreach ($projectsJson->data as $project) {
-        echo '<strong>[ ' . $project->name . ' (id ' . $project->id . ')' . ' ]</strong><br>' . PHP_EOL;
-
-        // Get all tasks in the current project
-        $tasks = $asana->getProjectTasks($project->id);
-        $tasksJson = json_decode($tasks);
-        if ($asana->responseCode != '200' || is_null($tasks)) {
-            echo 'Error while trying to connect to Asana, response code: ' . $asana->responseCode;
-            continue;
-        }
-
-        foreach ($tasksJson->data as $task) {
-            echo '+ ' . $task->name . ' (id ' . $task->id . ')' . ' ]<br>' . PHP_EOL;
-        }
+        //print out task stuff
     }
 }

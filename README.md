@@ -3,7 +3,7 @@ Asana PHP API
 
 An API that makes it easy to work with Asana via PHP. Based on the [original](https://github.com/ajimix/asana-api-php-class) by [Ajimix](https://github.com/ajimix).
 
-Documentation coming soon.
+Documentation coming soon. See examples folder for some example usage.
 
 
 ---
